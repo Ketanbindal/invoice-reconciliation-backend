@@ -5,3 +5,7 @@ pandas
 pydantic
 python-dotenv
 rapidfuzz
+python-jose
+passlib[bcrypt]
+psycopg2-binary==2.9.9
+python-multipart

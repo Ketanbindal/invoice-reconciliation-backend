@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from app.api.v1.routes.invoices import router as invoice_router
-from app.api.v1.routes.payments import router as payment_router
-from app.api.v1.routes.reconcile import router as reconcile_router
+from app.core.config import settings
+from app.api.v1 import auth, invoices, payments, reconcile
 
-app = FastAPI(title="Invoice Reconciliation Backend")
+app = FastAPI(title=settings.PROJECT_NAME)
 
-app.include_router(invoice_router, prefix="/api/v1/invoices")
-app.include_router(payment_router, prefix="/api/v1/payments")
-app.include_router(reconcile_router, prefix="/api/v1/reconcile")
+app.include_router(auth.router, prefix=settings.API_V1_STR)
+app.include_router(invoices.router, prefix=settings.API_V1_STR)
+app.include_router(payments.router, prefix=settings.API_V1_STR)
+app.include_router(reconcile.router, prefix=settings.API_V1_STR)
